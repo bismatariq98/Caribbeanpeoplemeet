@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1012260467696",
+    "project_id": "socialtinder-9b3af",
+    "storage_bucket": "socialtinder-9b3af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012260467696:android:14c1feb06063a1d582a335",
+        "android_client_info": {
+          "package_name": "com.example.socialtinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012260467696-tl972q3ao32o0gk0jfvrq8n8jtkp7799.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe7lsE3Z9bAhB8kRnAmHRAgdIAhfJtSWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012260467696-tl972q3ao32o0gk0jfvrq8n8jtkp7799.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
