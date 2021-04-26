@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
         title:Text("Home Screen"),
         actions: [
           IconButton(icon: Icon(Icons.emoji_emotions_rounded), onPressed: (){
-            userController.signOut();
+            userController.signout();
           })
         ],
       ),

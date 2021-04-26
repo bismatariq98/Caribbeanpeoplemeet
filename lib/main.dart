@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     child: Center(
                       child: Text(
-                        'SIGN UP',
+                        'LOG IN',
                         style: TextStyle(
                             
                             color: Color(0xffffd600),
@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     child: Center(
                       child: Text(
-                        'LOG IN',
+                        'SIGN UP',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:socialtinder/const/color.dart';
+import 'package:socialtinder/controller/loading_controller.dart';
 import 'package:socialtinder/controller/user_controller.dart';
 import 'package:socialtinder/main.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:beauty_textfield/beauty_textfield.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
+import 'package:socialtinder/screens/homepage.dart';
 import 'package:socialtinder/widgets/textfield.dart';
 
 
@@ -26,9 +29,14 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  
+     
+       Loader loader  = Get.put(Loader());
 
     UserController userController  = Get.put(UserController());
+//yar teri a list masla kar rhi
+//kya ?
+//yar a id deni lazmi c
+// nh dety hta do 
 
   static List<Animal> _animals = [
     Animal(id: 1, name: "Jamaica"),
@@ -58,7 +66,7 @@ class _LoginState extends State<Login> {
     Animal(id: 25, name: "Curacao"),
  
   ];
-  
+  //ya vala
   final _items = _animals
       .map((animal) => MultiSelectItem<Animal>(animal, animal.name))
       .toList();
@@ -68,6 +76,8 @@ class _LoginState extends State<Login> {
   //List<Animal> _selectedAnimals4 = [];
   List<Animal> _selectedAnimals5 = [];
   final _multiSelectKey = GlobalKey<FormFieldState>();
+
+  bool _isSigningIn = false;
 
   @override
   void initState() {
@@ -80,7 +90,7 @@ class _LoginState extends State<Login> {
     return 
     Scaffold(
       appBar: AppBar(
-        title:Text("SocialTinder",style:TextStyle(color: Color(0xFF111823))),
+        title:Text("SignUp",style:TextStyle(color: Color(0xFF111823))),
 
         backgroundColor: colorYellow,
       ),
@@ -187,7 +197,7 @@ class _LoginState extends State<Login> {
                     // ),
                   ),
                   child: Column(
-                    children: <Widget>[
+                    children: <Widget>[//ya h code
                       MultiSelectBottomSheetField(
                         initialChildSize: 0.4,
                         listType: MultiSelectListType.CHIP,
@@ -195,7 +205,7 @@ class _LoginState extends State<Login> {
                         buttonText: Text("Favorite Animals"),
                         title: Text("Animals"),
                         items: _items,
-                        onConfirm: (values) {
+                        onConfirm: ( values) {
                           _.selectedAnimals2 = values;
                            userController.update();
                         },
@@ -223,13 +233,81 @@ class _LoginState extends State<Login> {
                   ),
                 ),
       ),
-              SizedBox(height: 40),
+                SizedBox(height: 40),
+               
+
+               Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: _isSigningIn
+          ? CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+            )
+          : OutlinedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                  ),
+                ),
+              ),
+              onPressed: () async{
+               
+                setState(() {
+                  _isSigningIn = true;
+                  
+                });
+         
+             User user = await _.signInWithGoogle();
+            
+                
+                // TODO: Add a method call to the Google Sign-In authentication
+
+                setState(() {
+                  _isSigningIn = false;
+                });
+                 if(user != null){
+                   Get.to(HomePage());
+                 }
+                
+
+              },
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image(
+                      image: AssetImage("asset/googlelogo.png"),
+                      height: 35.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        'Sign in with Google',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            
+               ),
+ SizedBox(height: 40),
+
             GestureDetector(
               onTap: (){
                     final FormState formState =
                                   _.formKeySignUp.currentState;
                               if (formState.validate()) {
                                 print('Form is validate');
+                                     loader.loadingShow();
                                 _.signUp();
                               } else {
                                 print('Form is not Validate');
