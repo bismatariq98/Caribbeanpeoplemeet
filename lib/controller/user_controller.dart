@@ -12,11 +12,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:socialtinder/user_model.dart/signUpModel.dart'; 
 import 'package:google_sign_in/google_sign_in.dart';
 class UserController extends GetxController {
-   
- 
 
+   bool switches =  true;
 
+  Color colorblack = Colors.black;
 
+ Color colorwhite = Colors.white;
 
 
 
@@ -47,12 +48,14 @@ clearForm(){
    
   
    Future addUserData() async{
+     signup.userId = currentUserId;
    List listForSave=[];
    for(var i=0;i<selectedAnimals2.length;i++){
      listForSave.add(selectedAnimals2[i].name);
    }
      
     firebaseFirestore.collection("Users").doc(currentUserId).set({
+      'userId':currentUserId,
     'email':signup.email,
     'username':signup.username,
    'nationality': listForSave 
@@ -64,17 +67,18 @@ clearForm(){
 
    }
    Future logIn() async {
-     
+     loader.loadingShow();
      UserCredential userCredential;
   try{
     userCredential = await firebaseAuth.signInWithEmailAndPassword(email: emailController.text, password: passowrdController.text);
      loader.loadingDismiss();
      Get.snackbar("Login", "Login Successfully");
-     clearForm();
+    //  clearForm();
      Get.to(HomePage());
   }
   catch(e) {
     loader.loadingDismiss();
+    update();
     Get.snackbar("Error","There is error");
   }
    
@@ -82,8 +86,10 @@ clearForm(){
    }
 
    Future signUp () async {
+     loader.loadingShow();
            signup.email = emailController.text;
            signup.username = userNameController.text;
+
            
             try{
      var user = await firebaseAuth.createUserWithEmailAndPassword(email: signup.email, password: passowrdController.text);
@@ -92,12 +98,13 @@ clearForm(){
             addUserData().then((value) {
                 loader.loadingDismiss();
                Get.snackbar("Success", "User SignUp successfully");
-               clearForm();
+              //  clearForm();
             });
     
             }
             catch(e){
                 loader.loadingDismiss();
+                update();
                  Get.snackbar("Error", "Sign Up not Success");
                  print(e);
                

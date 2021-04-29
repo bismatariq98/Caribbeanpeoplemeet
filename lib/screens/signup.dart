@@ -98,7 +98,7 @@ class _LoginState extends State<Login> {
     GetBuilder<UserController>(builder: (_){
      return Container(
       decoration: BoxDecoration(
-        image:DecorationImage(image: AssetImage("asset/palm.jpg"),fit: BoxFit.cover)
+        image:DecorationImage(image: AssetImage("assets/palm.jpg"),fit: BoxFit.cover)
       ),
       height:Get.height,
       width:Get.width,
@@ -279,7 +279,7 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("asset/googlelogo.png"),
+                      image: AssetImage("assets/googlelogo.png"),
                       height: 35.0,
                     ),
                     Padding(

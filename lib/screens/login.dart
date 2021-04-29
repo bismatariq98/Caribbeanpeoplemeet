@@ -48,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             right: 0,
             bottom: 0,
             child: Container(
-                decoration: BoxDecoration(image:DecorationImage(image:AssetImage("asset/palm.jpg"),fit: BoxFit.cover)),  
+                decoration: BoxDecoration(image:DecorationImage(image:AssetImage("assets/palm.jpg"),fit: BoxFit.cover)),  
                 ),
                 
                 ),
@@ -155,7 +155,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Image(
-                      image: AssetImage("asset/googlelogo.png"),
+                      image: AssetImage("assets/googlelogo.png"),
                       height: 35.0,
                     ),
                     Padding(
@@ -188,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           _.formKeyLogIn.currentState;
                                       if (formState.validate()) {
                                         print('Form is validate');
-                                        loader.loadingShow();
+                                        // loader.loadingShow();
                                         _.logIn();
                                       } else {
                                         print('Form is not Validate');
