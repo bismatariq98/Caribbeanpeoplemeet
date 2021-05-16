@@ -178,7 +178,51 @@ class _LoginState extends State<Login> {
                                 ),
                 
                ),
+               SizedBox(height: 15,),
 
+     Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:40.0),
+                                child: 
+                                textField(
+                                  editingController: _.firstNameController,
+                                  hintText: "First Name",
+                                 prefixicon:Icon(Icons.lock_outline,color: Colors.black,),
+                                   textInputType:TextInputType.visiblePassword,
+                                   
+                                  validator: (input){
+                                      
+                              if (input.isEmpty) {
+                                return 'Please Enter First Name';
+                              } 
+                         
+                           
+                   },
+
+                                ),
+                
+               ),
+SizedBox(height:15,),
+Padding(
+                  padding: const EdgeInsets.symmetric(horizontal:40.0),
+                                child: 
+                                textField(
+                                  editingController: _.lastNameController,
+                                  hintText: "Last Name",
+                                 prefixicon:Icon(Icons.lock_outline,color: Colors.black,),
+                                   textInputType:TextInputType.visiblePassword,
+                                   
+                                  validator: (input){
+                                      
+                              if (input.isEmpty) {
+                                return 'Please Enter Last Name';
+                              } 
+                         
+                           
+                   },
+
+                                ),
+                
+               ),
            
         
         
@@ -234,7 +278,7 @@ class _LoginState extends State<Login> {
                 ),
       ),
                 SizedBox(height: 40),
-               
+                 
 
                Padding(
       padding: const EdgeInsets.only(bottom: 16.0),

@@ -26,7 +26,7 @@ class PostCard extends StatelessWidget {
   // LikeController likeController = Get.put(LikeController());
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
+    return GetBuilder<PostController>(
       builder: (_) {
         return Column(
           children: [
@@ -47,14 +47,15 @@ class PostCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(post.username,
+                            Text(post.content,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 17.0)),
                             SizedBox(height: 5.0),
                             Text(post.time == null
                                 ? 'Now'
-                                : timestampToString(post.time))
+                                : timestampToString(post.time)),
+                                
                           ],
                         ),
                       ],
@@ -149,10 +150,10 @@ class PostCard extends StatelessWidget {
                   //         ),
                   //       SizedBox(height: 10.0),
                   //       if (post.postPhoto != null)
-                  //         postImage(
-                  //           context,
-                  //           post.postPhoto,
-                  //         ),
+                          postImage(
+                            context,
+                            post.postPhoto,
+                          ),
                   //       Row(
                   //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //         children: <Widget>[

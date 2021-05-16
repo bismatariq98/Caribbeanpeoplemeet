@@ -15,11 +15,28 @@ class SocialTab extends StatefulWidget {
 }
 
 class _SocialTabState extends State<SocialTab> {
-   UserController userController = Get.put(UserController());
+
+
+  @override
+  void initState() { 
+    super.initState();
+    controller. getPosts();
+  }
+  //  UserController userController = Get.put(UserController());
    PostController controller = Get.put(PostController());
+
+  //  @override
+  //  void initState() { 
+  //    super.initState();
+  //    controller.getPosts();
+  //  }
   @override
   Widget build(BuildContext context) {
-    return 
+      controller.getPosts().then((value) {
+        print("Successfully Called");
+      });
+      return GetBuilder<PostController>(builder: (_){
+           return 
          SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -44,10 +61,14 @@ class _SocialTabState extends State<SocialTab> {
               
               for (var posts in controller.allPosts)
                 PostCard(
-                  post: posts,
+                  post:posts ,
                 ),
+
+                // Text(controller.allPosts[i].content)
             ],
           ),
         );
+      });
+ 
   }
 }

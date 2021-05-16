@@ -116,7 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       padding: const EdgeInsets.only(bottom: 16.0),
       child: _isSigningIn
           ? CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.white,)
             )
           : OutlinedButton(
               style: ButtonStyle(

@@ -75,18 +75,19 @@ class PostController extends GetxController {
   //   }
   // }
 
-  getPosts() {
-    // allPosts.clear();
-    firebase
+ Future getPosts() async {
+    allPosts.clear();
+   await firebase
         .collection('Posts')
-        .orderBy('time', descending: true)
+        // .orderBy('time', descending: true)
         .get()
         .then((qSnap) {
       if (qSnap.size > 0) {
-        qSnap.docs.forEach((docSnap) async {
+        allPosts.clear();
+        qSnap.docs.forEach((docSnap)  {
           var post = PostModel.fromDocumentSnapShot(docSnap);
           allPosts.add(post);
-          print (allPosts);
+          print (allPosts.length);
           //get likes
           // getLike(post);
           // getWow(post);

@@ -39,6 +39,9 @@ dependencies:
   lottie: ^1.0.1
   persistent_bottom_nav_bar: ^4.0.2
   image_picker: ^0.7.4
+  google_maps_flutter: ^2.0.4
+  swipe_stack: ^1.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

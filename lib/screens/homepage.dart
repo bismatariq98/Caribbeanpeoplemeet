@@ -7,6 +7,10 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:socialtinder/models/restaurant.dart';
+import 'package:socialtinder/screens/add_restaurant.dart';
+import 'package:socialtinder/screens/tabs/dating_tab.dart';
+import 'package:socialtinder/screens/tabs/profile_tab.dart';
 import 'package:socialtinder/screens/tabs/social_tab.dart';
 
 
@@ -81,9 +85,9 @@ class _HomePageState extends State<HomePage> {
     List _tabs = <Widget>[
       
             SocialTab(),
-                  Center(child: Text("hello Option")),
+                  DatingTab(),
             Container(color: Colors.green,),
-            Container(color: Colors.blue,),
+            ProfileTab(),
           ];
 
 
@@ -95,12 +99,14 @@ String _currentAddress;
      Scaffold(
       //  backgroundColor: userController.switches? userController.colorblack:userController.colorwhite,
       appBar: AppBar(
-        title:Text("Home Screen"),
+        backgroundColor: Colors.green,
+        elevation: 0.0,
+        title:Text("",style: TextStyle(color: Colors.black),),
         actions: [
-          IconButton(icon: Icon(Icons.emoji_emotions_rounded), onPressed: (){
+          IconButton(icon: Icon(Icons.emoji_emotions_rounded,), onPressed: (){
             userController.signout();
           }),
-            IconButton(icon: Icon(Icons.switch_account), onPressed: (){
+            IconButton(icon: Icon(Icons.switch_account,), onPressed: (){
              //yaha py krna
             
                 // userController.switches ? userController.switchersfunc(false):userController.switchersfunc(true);
@@ -111,7 +117,11 @@ String _currentAddress;
            IconButton(icon: Icon(Get.isDarkMode?Icons.wb_sunny: Icons.nights_stay),onPressed: (){Get.changeTheme(Get.isDarkMode?ThemeData.light(): ThemeData.dark());},),
            IconButton(icon: Icon(Icons.location_city), onPressed: (){
            _getCurrentLocation();
-          })
+          }),
+           IconButton(icon: Icon(Icons.add), onPressed: (){
+                Get.to(AddRestaurant());
+          }),
+
         ],
       ),
        bottomNavigationBar: BottomNavyBar(
@@ -128,16 +138,11 @@ String _currentAddress;
             activeColor: Colors.red,
             textAlign: TextAlign.center,
           ),
+        
           BottomNavyBarItem(
             icon: Icon(Icons.people),
-            title: Text('Users'),
-            activeColor: Colors.blueAccent,
-            textAlign: TextAlign.center,
-          ),
-          BottomNavyBarItem(
-            icon: Icon(Icons.message),
             title: Text(
-              'Messages test for mes teset test test ',
+              'Dating',
             ),
             activeColor: Colors.pink,
             textAlign: TextAlign.center,
@@ -146,6 +151,12 @@ String _currentAddress;
             icon: Icon(Icons.settings),
             title: Text('Settings'),
             activeColor: Colors.blue,
+            textAlign: TextAlign.center,
+          ),
+            BottomNavyBarItem(
+            icon: Icon(Icons.people),
+            title: Text('Users'),
+            activeColor: Colors.blueAccent,
             textAlign: TextAlign.center,
           ),
         ],
